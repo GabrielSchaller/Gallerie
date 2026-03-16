@@ -1,4 +1,5 @@
-import fs from 'fs;'
+import fs from 'fs';
+
 function scroll(e){
     e.style.transform = "translateY(10000px)";
 }
@@ -25,4 +26,5 @@ function init_imgs(){
     for(var i=0; i<files.length;i++){
         console.log(i);
     }
+    files = []
 }
