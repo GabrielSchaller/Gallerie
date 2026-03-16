@@ -1,0 +1,55 @@
+body {
+    background-color: white;
+    overflow: hidden;
+}
+
+div.center {
+    height: 97dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.imgs {
+    width: 100dvw;
+    height: 100dvh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    z-index: -1;
+    left: -1dvw;
+    top: -100dvh;
+    filter: blur(5px) brightness(70%) contrast(80%) saturate(70%);
+}
+
+div.container {
+    border:0px solid black;
+}
+
+div.column {
+    width: 34%;
+    transition: transform 500s;
+}
+
+div.columnR {
+    align-self: flex-start;
+    width: 34%;
+    transition: transform 500s;
+}
+
+img.picture {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+button#enter {
+    font-size: 130px;
+    transition: transform 5s ease-in-out;
+    background: none;
+    border: none;
+}
+
+button#enter:hover {
+    transform: scale(1.5, 3);
+}
+
