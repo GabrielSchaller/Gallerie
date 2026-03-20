@@ -16,6 +16,46 @@ var button = document.getElementById("enter");
 button.addEventListener("click", function(e){
     e.target.style.background = "pink";
 });
+
+var firstChildren = [];
+
+function io_callback(entries, observer){
+    entries.forEach(entry => {
+        if(entry.isIntersecting == false){
+            if(entry.target.active == true){
+                entry.target.display = "none";
+            }
+            entry.target.active = false;
+        }else{
+            const dcopy = entry.target.cloneNode(true);
+            const parent = entry.target.parentElement;
+            if(parent.classList[0] == "columnR"){
+                parent.insertBefore(dcopy, null);
+            }else{
+                if(parent.contains(firstChildren[0])){
+                    parent.insertBefore(dcopy, firstChildren[0]);
+                    firstChildren[0] = dcopy;
+                }else if(parent.contains(firstChildren[1])){
+                    parent.insertBefore(dcopy, firstChildren[1]);
+                    firstChildren[1] = dcopy;
+                }else{
+                    console.log(firstChildren);
+                }
+            }
+            dcopy.active = null;
+            intersectionObs.observe(dcopy);
+            entry.target.active = true;
+        }
+    });
+}
+
+const io_options = {
+    root: document.body,
+    threshhold: 0
+};
+
+const intersectionObs = new IntersectionObserver(io_callback, io_options);
+
 function shuffle(array){
     var currentIndex = array.length;
     while(currentIndex != 0){
@@ -32,24 +72,30 @@ function addPicture(source){
             const img = document.createElement("img");
             img.classList.add("picture");
             img.src = source;
+            img.loading = "lazy";
             const cont = document.createElement("div");
             cont.classList.add("container");
+            cont.active = null;
             cont.append(img);
             var i = Math.floor(Math.random()*3);
             if(i%3 == 0){
-                Array.from(document.getElementsByClassName("column"))[0].append(cont);
+                var arr = Array.from(document.getElementsByClassName("column"))[0];
+                arr.append(cont);
             }
             else if(i%3 == 1){
                 document.getElementsByClassName("columnR")[0].append(cont);
             }else{
-                Array.from(document.getElementsByClassName("column"))[1].append(cont);
+                var arr = Array.from(document.getElementsByClassName("column"))[1];
+                arr.append(cont);
             }
+            intersectionObs.observe(cont);
         }
     });
 }
 
 function init_imgs(){
     var files = [];
+    firstChildren = Array.from(document.getElementsByClassName("marker"));
     fetch("files.json")
     .then((res) => res.text())
     .then((text) => {
