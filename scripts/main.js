@@ -25,35 +25,46 @@ function shuffle(array){
     }
 }
 
+function addPicture(source){
+    fetch(source, {method: "HEAD"})
+    .then((res) =>{
+        if(res.status != 404){
+            const img = document.createElement("img");
+            img.classList.add("picture");
+            img.src = source;
+            const cont = document.createElement("div");
+            cont.classList.add("container");
+            cont.append(img);
+            var i = Math.floor(Math.random()*3);
+            if(i%3 == 0){
+                Array.from(document.getElementsByClassName("column"))[0].append(cont);
+            }
+            else if(i%3 == 1){
+                document.getElementsByClassName("columnR")[0].append(cont);
+            }else{
+                Array.from(document.getElementsByClassName("column"))[1].append(cont);
+            }
+        }
+    });
+}
+
 function init_imgs(){
-    console.log("init");
     var files = [];
-    fetch("files.txt")
+    fetch("files.json")
     .then((res) => res.text())
     .then((text) => {
         var json = JSON.parse(text);
-        console.log(json);
-        files.append();
-    })
-    .catch((e) => console.error(e));
-    shuffle(files);
-    var columns = Array.from(document.getElementsByClassName("column"));
-    var firstColumn =  columns[0];
-    var secondColumn = document.getElementsByClassName("columnR")[0];
-    var thirdColumn = columns[1];
-    for(var i=0; i<files.length;i++){
-        const img = document.createElement("img");
-        img.classList.add("picture");
-        const cont = document.createElement("div");
-        cont.classList.add("container");
-        cont.append(img);
-        img.src = files[i];
-        if(i%3 == 0){
-            firstColumn.appendChild(cont)
-        }else if(i%3 == 1){
-            secondColumn.appendChild(cont)
-        }else{
-            thirdColumn.appendChild(cont)
+        const artists = json["creators"];
+        const prompts = json["prompts"];
+        var prompt = 0;
+        for(var artist = 0; artist < json["creators"].length; artist++){
+            for(var prompt = 0; prompt < json["prompts"].length; prompt++){
+                files.push("bilder/" + String(artists[artist]) + String(prompts[prompt]) + ".jpg");
+            }
         }
-    }
+        shuffle(files);
+        for(var i=0; i<files.length;i++){
+            addPicture(files[i]);
+        }
+    });
 }
