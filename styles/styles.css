@@ -10,31 +10,36 @@ div.center {
     justify-content: center;
 }
 
-div.imgs {
+div#imgs {
     width: 100dvw;
     height: 100dvh;
     position: relative;
     display: flex;
     align-items: flex-end;
-    z-index: -1;
     left: -1dvw;
     top: -100dvh;
     filter: blur(5px) brightness(70%) contrast(80%) saturate(70%);
 }
 
 div.container {
-    border:0px solid black;
+    border:5px solid black;
 }
 
 div.column {
     width: 34%;
-    transition: transform 500s;
+    transition: transform 5s linear;
 }
 
 div.columnR {
     align-self: flex-start;
     width: 34%;
-    transition: transform 500s;
+    transition: transform 5s linear;
+}
+
+div.columnRhidden {
+    align-self: flex-start;
+    width: 0%;
+    transition: transform 5s;
 }
 
 img.picture {
@@ -47,6 +52,7 @@ button#enter {
     transition: transform 5s ease-in-out;
     background: none;
     border: none;
+    z-index: 1;
 }
 
 button#enter:hover {
