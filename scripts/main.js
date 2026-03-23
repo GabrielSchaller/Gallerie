@@ -1,8 +1,8 @@
 function scroll(e){
     if(e.classList[0] == "column"){
-        var temp = String(e.getBoundingClientRect().bottom - window.innerHeight + 50);
+        var temp = String(e.getBoundingClientRect().bottom - window.innerHeight + 100);
     }else{
-        var temp = String(e.getBoundingClientRect().top - 50);
+        var temp = String(e.getBoundingClientRect().top - 100);
     }
     if(e.style.transformOrigin){
         var transforms = e.style.transform.split(" ");
@@ -46,25 +46,13 @@ allColumns.forEach(entry => {
 });
 
 function zoomOut(){
-    columnR.style.transitionDuration = "5s";
-    columnR.style.transformOrigin = "50% 0";
-    columnR.style.transform = "scale(0.6, 0.6)";
-    columns[0].style.transform = "scale(0.6, 0.6) translateX(60%)";
-    columns[1].style.transform = "scale(0.6, 0.6) translateX(-60%)";
-    columns.forEach(entry => {
-        entry.style.transitionDuration = "5s";
-        entry.style.transformOrigin= "50% 100%";
-    })
-    newColumns[0].style.transform = "scale(0.6, 0.6) translateX(100%)";
-    newColumns[1].style.transform = "scale(0.6, 0.6) translateX(-100%)";
-    newColumns.forEach(entry => {
-        entry.style.display = "flex";
-        entry.style.transitionDuration = "5s";
-        entry.style.transformOrigin = "50% 0%";
-    })
     var images = document.getElementById("imgs");
-    images.style.transition = ("filter, 5s");
+    images.style.width = "100dvw";
+    images.style.transform = "translateX(33%)";
     images.style.filter = "blur(7px) brightness(70%) contrast(70%) saturate(30%)";
+    newColumns.forEach(entry => {
+        scroll(entry);
+    })
 }
 function removeButton(){
     button.style.transform = "scale(1.5, 3)";
@@ -76,10 +64,60 @@ function removeButton(){
     }, 3000);
 }
 
+const track = document.getElementById("button-track");
+function addScroller() {
+    const width = window.innerWidth/2;
+    track.style.transform = "translateX(-" + String(width) + "px)";
+    track.dataset.sliderpercent = -50;
+    setTimeout(() => {
+        const handleOnDown = e => {
+        //console.log(e.clientX);
+            track.dataset.sliderstartx = e.clientX;
+        }
+
+        const handleOnMove = e => {
+            if(track.dataset.sliderstartx == 0){
+                return;
+            }
+            console.log(track.dataset.sliderpercent);
+            console.log(track.dataset.sliderstartx);
+            const diff = e.clientX - track.dataset.sliderstartx;
+            const max = window.innerWidth / 2;
+            const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
+            const pixels = percent/100*window.innerWidth;
+            
+            track.animate({
+                transform: `translate(${pixels}px)`
+            },{duration:1200, fill:"forwards"});
+    }
+
+        const handleOnUp = e => {
+            const diff = e.clientX-track.dataset.sliderstartx;
+            const max = window.innerWidth / 2;
+            const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
+            track.dataset.sliderpercent = parseFloat(percent + track.dataset.sliderpercent);
+            //console.log(track.dataset.sliderpercent);
+            track.dataset.sliderstartx = 0;
+        }
+
+        window.onmousedown = e => handleOnDown(e);
+
+        window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+        window.onmouseup = e => handleOnUp(e);
+
+        window.ontouchend = e => handleOnUp(e.touches[0]);
+
+        window.onmousemove = e => handleOnMove(e);
+
+        window.ontouchmove = e => handleOnMove(e.touches[0]);
+    }, 5000);
+};
+
 var button = document.getElementById("enter");
 button.addEventListener("click", function(e){
     zoomOut();
-    //addScroller(); TODO
+    addScroller();
     removeButton();
 });
 
@@ -184,12 +222,20 @@ function init_imgs(){
     .then((res) => res.text())
     .then((text) => {
         var json = JSON.parse(text);
-        const artists = json["creators"];
+        //const artists = json["creators"];
         const prompts = json["prompts"];
         var prompt = 0;
-        for(var artist = 0; artist < json["creators"].length; artist++){
-            for(var prompt = 0; prompt < json["prompts"].length; prompt++){
-                files.push("bilder/" + String(artists[artist]) + String(prompts[prompt]) + ".jpg");
+        for(const key in prompts){
+            var availableArtists = prompts[key];
+            console.log(availableArtists);
+            var rand = Math.floor(Math.random()*availableArtists.length);
+            for(var artist = 0; artist < availableArtists.length; artist++){
+                var source = "bilder/" + availableArtists[artist] + key + ".jpg";
+                files.push(source);
+                if(rand == artist){
+                    var toAdd = "<div class=\"trackContainer\"   onclick=()\">\n      <img class=\"image\" src=\""+source+"\" draggable=\"false\"/>\n</div>\n    </div>\n";
+                    track.insertAdjacentHTML("beforeEnd", toAdd);
+                }
             }
         }
         shuffle(files);

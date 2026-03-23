@@ -1,1 +1,18 @@
-{ "creators" : ["Gabriel", "test"], "prompts" : ["Skelett", "Transparent", "Angeln", "Drei", "Fabelwesen", "Irrlicht", "Leicht", "Purpose", "Rutsche","Schlamm", "Tragen", "Wabe", "Wachs", "Weich", "Weiss"]}
+{"prompts" : {
+    "Skelett" : ["Gabriel", "test"],
+    "Transparent" : ["Gabriel", "test"],
+    "Angeln" : ["Gabriel", "test"], 
+    "Drei" : ["Gabriel", "test"], 
+    "Fabelwesen" : ["Gabriel", "test"],
+    "Irrlicht" : ["Gabriel", "test"],
+    "Leicht" : ["Gabriel", "test"],
+    "Purpose" : ["Gabriel", "test"],
+    "Rutsche" : ["Gabriel", "test"],
+    "Schlamm" : ["Gabriel", "test"],
+    "Tragen" : ["Gabriel", "test"],
+    "Wabe" : ["Gabriel", "test"],
+    "Wachs" : ["Gabriel", "test"],
+    "Weich" : ["Gabriel", "test"],
+    "Weiss" : ["Gabriel", "test"]
+}
+}
