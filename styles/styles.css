@@ -54,6 +54,7 @@ div.columnRhidden {
 img.picture {
     max-height: 100%;
     max-width: 100%;
+    user-select: none;
 }
 
 button#enter {

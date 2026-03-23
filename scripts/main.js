@@ -172,6 +172,7 @@ function addPicture(source){
             img.classList.add("picture");
             img.src = source;
             img.loading = "lazy";
+            img.draggable = false;
             const cont = document.createElement("div");
             cont.classList.add("container");
             cont.active = null;

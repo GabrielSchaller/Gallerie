@@ -1,6 +1,5 @@
 {"prompts" : {
     "Skelett" : ["Gabriel", "test"],
-    "Transparent" : ["Gabriel", "test"],
     "Angeln" : ["Gabriel", "test"], 
     "Drei" : ["Gabriel", "test"], 
     "Fabelwesen" : ["Gabriel", "test"],
@@ -13,6 +12,7 @@
     "Wabe" : ["Gabriel", "test"],
     "Wachs" : ["Gabriel", "test"],
     "Weich" : ["Gabriel", "test"],
-    "Weiss" : ["Gabriel", "test"]
+    "Weiss" : ["Gabriel", "test"],
+    "Transparent" : ["Gabriel", "test"]
 }
 }
