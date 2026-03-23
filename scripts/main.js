@@ -79,8 +79,6 @@ function addScroller() {
             if(track.dataset.sliderstartx == 0){
                 return;
             }
-            console.log(track.dataset.sliderpercent);
-            console.log(track.dataset.sliderstartx);
             const diff = e.clientX - track.dataset.sliderstartx;
             const max = window.innerWidth / 2;
             const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
@@ -130,11 +128,11 @@ function io_callback(entries, observer){
                 var rect = entry.target.getBoundingClientRect();
                 if(rect.top > window.innerHeight && entry.target.parentElement.classList[0] == "column"){
                     setTimeout(() => {
-                        entry.target.style.display = "none";
-                    }, 1000);
+                        entry.target.style.visibility = "hidden";
+                    }, 1000, entry);
                 }else if(rect.bottom < 0 && entry.target.parentElement.classList[0] != "column"){
                     setTimeout(() => {
-                        entry.target.style.display = "none";
+                        entry.target.style.visibility = "hidden";
                     }, 1000);
                 }
             }
@@ -142,20 +140,7 @@ function io_callback(entries, observer){
         }else{
             const dcopy = entry.target.cloneNode(true);
             const parent = entry.target.parentElement;
-                if(parent.classList[0] == "columnR"){
-                    parent.insertBefore(dcopy, null);
-                }else{
-                    if(parent.contains(firstChildren[0])){
-                        parent.insertBefore(dcopy, firstChildren[0]);
-                        firstChildren[0] = dcopy;
-                    }else if(parent.contains(firstChildren[1])){
-                        parent.insertBefore(dcopy, firstChildren[1]);
-                        firstChildren[1] = dcopy;
-                    }else{
-                        console.log(firstChildren);
-                    }
-                }
-
+            parent.append(dcopy);
             dcopy.active = null;
             intersectionObs.observe(dcopy);
             entry.target.active = true;
@@ -217,7 +202,6 @@ function addPicture(source){
 
 function init_imgs(){
     var files = [];
-    firstChildren = Array.from(document.getElementsByClassName("marker"));
     fetch("files.json")
     .then((res) => res.text())
     .then((text) => {
@@ -227,13 +211,12 @@ function init_imgs(){
         var prompt = 0;
         for(const key in prompts){
             var availableArtists = prompts[key];
-            console.log(availableArtists);
             var rand = Math.floor(Math.random()*availableArtists.length);
             for(var artist = 0; artist < availableArtists.length; artist++){
                 var source = "bilder/" + availableArtists[artist] + key + ".jpg";
                 files.push(source);
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\"   onclick=()\">\n      <img class=\"image\" src=\""+source+"\" draggable=\"false\"/>\n</div>\n    </div>\n";
+                    var toAdd = "<div class=\"trackContainer\" onclick=()\"><img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }

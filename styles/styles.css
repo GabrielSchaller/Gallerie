@@ -28,6 +28,10 @@ div.container {
 }
 
 div.column {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
     width: 20%;
     transition: transform 5s linear;
     z-index : 0;
