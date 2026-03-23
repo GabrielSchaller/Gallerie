@@ -48,15 +48,19 @@ allColumns.forEach(entry => {
 function zoomOut(){
     columnR.style.transitionDuration = "5s";
     columnR.style.transformOrigin = "50% 0";
-    columnR.style.transform = "scale(0.5, 0.5)";
-    columns[0].style.transform = "scale(0.5, 0.5) translateX(100%)";
-    columns[1].style.transform = "scale(0.5, 0.5) translateX(-100%)";
+    columnR.style.transform = "scale(0.6, 0.6)";
+    columns[0].style.transform = "scale(0.6, 0.6) translateX(60%)";
+    columns[1].style.transform = "scale(0.6, 0.6) translateX(-60%)";
     columns.forEach(entry => {
         entry.style.transitionDuration = "5s";
         entry.style.transformOrigin= "50% 100%";
     })
+    newColumns[0].style.transform = "scale(0.6, 0.6) translateX(100%)";
+    newColumns[1].style.transform = "scale(0.6, 0.6) translateX(-100%)";
     newColumns.forEach(entry => {
-            //TODO
+        entry.style.display = "flex";
+        entry.style.transitionDuration = "5s";
+        entry.style.transformOrigin = "50% 0%";
     })
     var images = document.getElementById("imgs");
     images.style.transition = ("filter, 5s");
