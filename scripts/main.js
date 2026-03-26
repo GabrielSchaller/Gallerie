@@ -1,3 +1,14 @@
+var  mouseX;
+
+window.document.addEventListener("mousemove", function(event) {
+    mouseX = event.clientX;
+}, false);
+
+const openPrompt = function(callee) {
+    //console.log(callee); prompt name
+};
+
+
 function scroll(e){
     if(e.classList[0] == "column"){
         var temp = String(e.getBoundingClientRect().bottom - window.innerHeight + 100);
@@ -24,7 +35,7 @@ function scroll(e){
     }
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     init_imgs();
     const scrollers = document.getElementsByClassName("column");
     const scrollersR = document.getElementsByClassName("columnR")
@@ -39,7 +50,7 @@ const oldColumns = columns.concat(columnR);
 const allColumns = oldColumns.concat(newColumns);
 
 allColumns.forEach(entry => {
-    entry.addEventListener('transitionend', function() {
+    entry.addEventListener("transitionend", function() {
         entry.style.transformDuration = "500s";
         scroll(entry);
     });
@@ -47,8 +58,8 @@ allColumns.forEach(entry => {
 
 function zoomOut(){
     var images = document.getElementById("imgs");
-    images.style.width = "100dvw";
-    images.style.transform = "translateX(33%)";
+    images.style.width = "101dvw";
+    images.style.transform = "translateX(32%)";
     images.style.filter = "blur(7px) brightness(70%) contrast(70%) saturate(30%)";
     newColumns.forEach(entry => {
         scroll(entry);
@@ -69,12 +80,29 @@ function addScroller() {
     const width = window.innerWidth/2;
     track.style.transform = "translateX(-" + String(width) + "px)";
     track.dataset.sliderpercent = -50;
-    setTimeout(() => {
-        const handleOnDown = e => {
-        //console.log(e.clientX);
-            track.dataset.sliderstartx = e.clientX;
-        }
 
+    const handleOnDown = e => {
+        track.dataset.sliderstartx = e.clientX;
+    }
+
+    var handleOnUp = e => {
+        track.dataset.sliderstartx = 0;
+    }
+
+    window.onmousedown = e => handleOnDown(e);
+
+    window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+    window.onmouseup = e => handleOnUp(e);
+
+    window.ontouchend = e => handleOnUp(e.touches[0]);
+
+    setTimeout(() => {
+        window.document.removeEventListener("mousemove", function() {}, false);
+
+        if(track.dataset.sliderstartx != 0) {
+            track.dataset.sliderstartx = mouseX;
+        }
         const handleOnMove = e => {
             if(track.dataset.sliderstartx == 0){
                 return;
@@ -89,19 +117,14 @@ function addScroller() {
             },{duration:1200, fill:"forwards"});
     }
 
-        const handleOnUp = e => {
+        var handleOnUp = e => {
             const diff = e.clientX-track.dataset.sliderstartx;
             const max = window.innerWidth / 2;
             const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
             track.dataset.sliderpercent = parseFloat(percent + track.dataset.sliderpercent);
-            //console.log(track.dataset.sliderpercent);
             track.dataset.sliderstartx = 0;
         }
-
-        window.onmousedown = e => handleOnDown(e);
-
-        window.ontouchstart = e => handleOnDown(e.touches[0]);
-
+        
         window.onmouseup = e => handleOnUp(e);
 
         window.ontouchend = e => handleOnUp(e.touches[0]);
@@ -207,9 +230,7 @@ function init_imgs(){
     .then((res) => res.text())
     .then((text) => {
         var json = JSON.parse(text);
-        //const artists = json["creators"];
         const prompts = json["prompts"];
-        var prompt = 0;
         for(const key in prompts){
             var availableArtists = prompts[key];
             var rand = Math.floor(Math.random()*availableArtists.length);
@@ -217,7 +238,7 @@ function init_imgs(){
                 var source = "bilder/" + availableArtists[artist] + key + ".jpg";
                 files.push(source);
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\" onclick=()\"><img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div></div>";
+                    var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }

@@ -1,18 +1,19 @@
 {"prompts" : {
-    "Skelett" : ["Gabriel", "test"],
-    "Angeln" : ["Gabriel", "test"], 
-    "Drei" : ["Gabriel", "test"], 
-    "Fabelwesen" : ["Gabriel", "test"],
-    "Irrlicht" : ["Gabriel", "test"],
-    "Leicht" : ["Gabriel", "test"],
-    "Purpose" : ["Gabriel", "test"],
-    "Rutsche" : ["Gabriel", "test"],
-    "Schlamm" : ["Gabriel", "test"],
-    "Tragen" : ["Gabriel", "test"],
-    "Wabe" : ["Gabriel", "test"],
-    "Wachs" : ["Gabriel", "test"],
-    "Weich" : ["Gabriel", "test"],
-    "Weiss" : ["Gabriel", "test"],
-    "Transparent" : ["Gabriel", "test"]
-}
+    "Irrlicht" : ["Gabriel", "Barbara", "Raissa"],
+    "Drei" : ["Gabriel", "Barbara", "Raissa"], 
+    "Wachs" : ["Gabriel", "Barbara", "Raissa"],
+    "Angeln" : ["Gabriel", "Barbara", "Raissa"], 
+    "Schlamm" : ["Gabriel", "Barbara"],
+    "Wabe" : ["Gabriel", "Barbara", "Raissa"],
+    "Weiss" : ["Gabriel", "Barbara", "Raissa"],
+    "Tragen" : ["Gabriel", "Barbara", "Raissa"],
+    "Leicht" : ["Gabriel", "Barbara", "Raissa"],
+    "Rutsche" : ["Gabriel", "Barbara"],
+    "Skelett" : ["Gabriel", "Barbara", "Raissa"],
+    "Fabelwesen" : ["Gabriel", "Barbara", "Raissa"],
+    "Transparent" : ["Gabriel", "Barbara"],
+    "Weich" : ["Gabriel", "Barbara", "Raissa"],
+    "Purpose" : ["Gabriel", "Barbara","Raissa"],
+    "Gallerie" : ["Barbara"]
+    }
 }
