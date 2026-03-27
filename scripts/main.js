@@ -1,11 +1,65 @@
-var  mouseX;
+var mouseX;
+var json;
+var newTrack;
 
 window.document.addEventListener("mousemove", function(event) {
     mouseX = event.clientX;
 }, false);
 
-const openPrompt = function(callee) {
-    //console.log(callee); prompt name
+closePrompt = function() {
+    console.log("closing");
+    var track = document.getElementById("button-track");
+    var othertrack = document.getElementById("pausedTrack");
+    var pixels = window.innerWidth*1.5;
+    track.animate({
+        transform: `translate(${pixels}px)`
+    },{duration:1200, fill:"forwards"});
+    const percent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
+    const otherpixels = percent/100*window.innerWidth;
+    othertrack.animate({
+        transform: `translate(${otherpixels}px)`
+    },{duration:1200, fill:"forwards"});
+    setTimeout(() => {
+        othertrack.style.display = "flex";
+        track.id = " ";
+        track.remove();
+        othertrack.id = "button-track";
+    }, 500);
+    
+}
+
+openPrompt = function(caller) {
+    var track = document.getElementById("button-track");
+    var artists = json["prompts"][caller];
+    track.id = "pausedTrack";
+    newTrack = document.createElement("div");
+    document.getElementById("trackInside").append(newTrack);
+    newTrack.id = "button-track";
+    newTrack.dataset.sliderstartx = "0";
+    newTrack.dataset.sliderpercent = "0";
+    newTrack.style.draggable = "false";
+    newTrack.style.cursor = "auto";
+    newTrack.style.transition = "transform 1s ease-in-out";
+    shuffle(artists);
+    var button = "<button type=\"button\" id=\"X\" onclick=\"closePrompt()\">X</button>";
+    newTrack.insertAdjacentHTML("beforeEnd", button);
+    artists.forEach(entry => {
+        var source = "/bilder/" + entry + caller + ".jpg";
+        var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div>";
+        newTrack.insertAdjacentHTML("beforeEnd", toAdd);
+    })
+    const width = window.innerWidth/2;
+    const height = window.innerHeight*5;
+    const percent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
+    const pixels = percent/100*window.innerWidth;
+    track.animate({
+        transform: `translate(${pixels}px, ${height}px)`
+    },{duration:1200, fill:"forwards"});
+    setTimeout(() => {
+        track.style.display = "none";
+        newTrack.style.transform = "translateX(-" + String(width) + "px)";
+        newTrack.dataset.sliderpercent = -50;
+    }, 1000);
 };
 
 
@@ -75,18 +129,17 @@ function removeButton(){
     }, 3000);
 }
 
-const track = document.getElementById("button-track");
 function addScroller() {
     const width = window.innerWidth/2;
-    track.style.transform = "translateX(-" + String(width) + "px)";
-    track.dataset.sliderpercent = -50;
+    document.getElementById("button-track").style.transform = "translateX(-" + String(width) + "px)";
+    document.getElementById("button-track").dataset.sliderpercent = -50;
 
     const handleOnDown = e => {
-        track.dataset.sliderstartx = e.clientX;
+        document.getElementById("button-track").dataset.sliderstartx = e.clientX;
     }
 
     var handleOnUp = e => {
-        track.dataset.sliderstartx = 0;
+        document.getElementById("button-track").dataset.sliderstartx = 0;
     }
 
     window.onmousedown = e => handleOnDown(e);
@@ -100,29 +153,29 @@ function addScroller() {
     setTimeout(() => {
         window.document.removeEventListener("mousemove", function() {}, false);
 
-        if(track.dataset.sliderstartx != 0) {
-            track.dataset.sliderstartx = mouseX;
+        if(document.getElementById("button-track").dataset.sliderstartx != 0) {
+            document.getElementById("button-track").dataset.sliderstartx = mouseX;
         }
         const handleOnMove = e => {
-            if(track.dataset.sliderstartx == 0){
+            if(document.getElementById("button-track").dataset.sliderstartx == 0){
                 return;
             }
-            const diff = e.clientX - track.dataset.sliderstartx;
+            const diff = e.clientX - document.getElementById("button-track").dataset.sliderstartx;
             const max = window.innerWidth / 2;
-            const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
+            const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + diff/max*100;
             const pixels = percent/100*window.innerWidth;
             
-            track.animate({
+            document.getElementById("button-track").animate({
                 transform: `translate(${pixels}px)`
             },{duration:1200, fill:"forwards"});
     }
 
         var handleOnUp = e => {
-            const diff = e.clientX-track.dataset.sliderstartx;
+            const diff = e.clientX-document.getElementById("button-track").dataset.sliderstartx;
             const max = window.innerWidth / 2;
-            const percent = parseFloat(track.dataset.sliderpercent) + diff/max*100;
-            track.dataset.sliderpercent = parseFloat(percent + track.dataset.sliderpercent);
-            track.dataset.sliderstartx = 0;
+            const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + diff/max*100;
+            document.getElementById("button-track").dataset.sliderpercent = parseFloat(percent + document.getElementById("button-track").dataset.sliderpercent);
+            document.getElementById("button-track").dataset.sliderstartx = 0;
         }
         
         window.onmouseup = e => handleOnUp(e);
@@ -132,7 +185,7 @@ function addScroller() {
         window.onmousemove = e => handleOnMove(e);
 
         window.ontouchmove = e => handleOnMove(e.touches[0]);
-    }, 5000);
+    }, 4000);
 };
 
 var button = document.getElementById("enter");
@@ -226,10 +279,11 @@ function addPicture(source){
 
 function init_imgs(){
     var files = [];
+    var track = document.getElementById("button-track");
     fetch("files.json")
     .then((res) => res.text())
     .then((text) => {
-        var json = JSON.parse(text);
+        json = JSON.parse(text);
         const prompts = json["prompts"];
         for(const key in prompts){
             var availableArtists = prompts[key];
