@@ -9,21 +9,22 @@ window.document.addEventListener("mousemove", function(event) {
 closePrompt = function() {
     var track = document.getElementById("button-track");
     var othertrack = document.getElementById("pausedTrack");
-    var pixels = window.innerWidth*1.5;
+    const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent);
+    const pixels = percent/100*window.innerWidth + window.innerWidth*0.5;
     track.animate({
-        transform: `translate(${pixels}px)`
-    },{duration:1200, fill:"forwards"});
-    const percent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
-    const otherpixels = percent/100*window.innerWidth;
-    othertrack.animate({
-        transform: `translate(${otherpixels}px)`
-    },{duration:1200, fill:"forwards"});
+        transform: `translate(0px)`
+    },{duration:600, fill:"forwards"});
+    const otherpercent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
+    const otherpixels = otherpercent/100*window.innerWidth;
     setTimeout(() => {
         othertrack.style.display = "flex";
         track.id = " ";
         track.remove();
         othertrack.id = "button-track";
-    }, 500);
+        othertrack.animate({
+            transform: `translate(${otherpixels}px)`
+        },{duration:600, fill:"forwards"});
+    }, 600);
     
 }
 
@@ -48,17 +49,17 @@ openPrompt = function(caller) {
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
     const width = window.innerWidth/2;
-    const height = window.innerHeight*5;
+    const height = window.innerHeight;
     const percent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
     const pixels = percent/100*window.innerWidth;
     track.animate({
         transform: `translate(${pixels}px, ${height}px)`
-    },{duration:1200, fill:"forwards"});
+    },{duration:600, fill:"forwards"});
     setTimeout(() => {
         track.style.display = "none";
         newTrack.style.transform = "translateX(-" + String(width) + "px)";
         newTrack.dataset.sliderpercent = -50;
-    }, 1000);
+    }, 500);
 };
 
 
