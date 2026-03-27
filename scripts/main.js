@@ -43,7 +43,7 @@ openPrompt = function(caller) {
     var button = "<button type=\"button\" id=\"X\" onclick=\"closePrompt()\">X</button>";
     newTrack.insertAdjacentHTML("beforeEnd", button);
     artists.forEach(entry => {
-        var source = "/bilder/" + entry + caller + ".jpg";
+        var source = "bilder/" + entry + caller + ".jpg";
         var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div>";
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
