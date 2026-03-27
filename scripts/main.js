@@ -7,7 +7,6 @@ window.document.addEventListener("mousemove", function(event) {
 }, false);
 
 closePrompt = function() {
-    console.log("closing");
     var track = document.getElementById("button-track");
     var othertrack = document.getElementById("pausedTrack");
     var pixels = window.innerWidth*1.5;
