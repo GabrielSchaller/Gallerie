@@ -89,7 +89,7 @@ button#X:hover{
 
 .trackContainer {
     display: flex;
-	height: 70vh;
+	height: 70dvh;
 	overflow: hidden;
 	object-position: 50% center;
 	position: relative;
@@ -107,13 +107,11 @@ button#X:hover{
 
 .trackContainer:hover > p {
     font-size: 80px;
-    
 }
 
 .trackContainer > .image {
-	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
     top: 0;
 }
 

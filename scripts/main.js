@@ -5,6 +5,9 @@ var newTrack;
 window.document.addEventListener("mousemove", function(event) {
     mouseX = event.clientX;
 }, false);
+window.document.addEventListener("touchmove", function(event) {
+    mouseX = event.clientX;
+}, false);
 
 closePrompt = function() {
     var track = document.getElementById("button-track");
@@ -152,7 +155,8 @@ function addScroller() {
 
     setTimeout(() => {
         window.document.removeEventListener("mousemove", function() {}, false);
-
+        window.document.removeEventListener("touchmove", function() {}, false);
+        
         if(document.getElementById("button-track").dataset.sliderstartx != 0) {
             document.getElementById("button-track").dataset.sliderstartx = mouseX;
         }
@@ -170,7 +174,7 @@ function addScroller() {
             },{duration:1200, fill:"forwards"});
     }
 
-        var handleOnUp = e => {
+        handleOnUp = e => {
             const diff = e.clientX-document.getElementById("button-track").dataset.sliderstartx;
             const max = window.innerWidth / 2;
             const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + diff/max*100;
@@ -180,7 +184,7 @@ function addScroller() {
         
         window.onmouseup = e => handleOnUp(e);
 
-        window.ontouchend = e => handleOnUp(e.touches[0]);
+        window.ontouchend = e => handleOnUp(e.changedTouches[0]);
 
         window.onmousemove = e => handleOnMove(e);
 
