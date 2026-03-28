@@ -69,6 +69,7 @@ button#enter {
 
 button#enter:hover {
     transform: scale(1.5, 3);
+    cursor: pointer;
 }
 
 button#X{

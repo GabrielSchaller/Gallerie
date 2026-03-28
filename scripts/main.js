@@ -37,7 +37,7 @@ openPrompt = function(caller) {
     newTrack.id = "button-track";
     newTrack.dataset.sliderstartx = "0";
     newTrack.dataset.sliderpercent = "0";
-    newTrack.style.draggable = "false";
+    newTrack.style.draggable = false;
     newTrack.style.cursor = "auto";
     newTrack.style.transition = "transform 1s ease-in-out";
     shuffle(artists);
@@ -45,7 +45,7 @@ openPrompt = function(caller) {
     newTrack.insertAdjacentHTML("beforeEnd", button);
     artists.forEach(entry => {
         var source = "bilder/" + entry + caller + ".jpg";
-        var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div>";
+        var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
     const width = window.innerWidth/2;
@@ -197,29 +197,26 @@ button.addEventListener("click", function(e){
 
 var firstChildren = [];
 
-function io_callback(entries, observer){
+function io_callback(entries, observer){//rework this TODO
     entries.forEach(entry => {
         if(entry.isIntersecting == false){
-            if(entry.target.active == true){
-                var rect = entry.target.getBoundingClientRect();
-                if(rect.top > window.innerHeight && entry.target.parentElement.classList[0] == "column"){
-                    setTimeout(() => {
-                        entry.target.style.visibility = "hidden";
-                    }, 1000, entry);
-                }else if(rect.bottom < 0 && entry.target.parentElement.classList[0] != "column"){
-                    setTimeout(() => {
-                        entry.target.style.visibility = "hidden";
-                    }, 1000);
-                }
+            var rect = entry.target.getBoundingClientRect();
+            if(rect.top > window.innerHeight && entry.target.parentElement.classList[0] == "column"){
+                intersectionObs.unobserve(entry.target);
+                setTimeout(() => {
+                    t.style.visibility = "hidden";
+                }, 5000, t=entry.target);
+            }else if(rect.bottom < 20 && (entry.target.parentElement.classList[0] == "columnR" || entry.target.parentElement.classList[0] == "columnRhidden")){
+                intersectionObs.unobserve(entry.target);
+                setTimeout(() => {
+                    t.style.visibility = "hidden";
+                }, 5000, t=entry.target);
             }
-            entry.target.active = false;
         }else{
             const dcopy = entry.target.cloneNode(true);
             const parent = entry.target.parentElement;
             parent.append(dcopy);
-            dcopy.active = null;
             intersectionObs.observe(dcopy);
-            entry.target.active = true;
         }
     });
 }
@@ -251,7 +248,7 @@ function addPicture(source){
             img.draggable = false;
             const cont = document.createElement("div");
             cont.classList.add("container");
-            cont.active = null;
+            cont.draggable = false;
             cont.append(img);
             var i = Math.floor(Math.random()*3);
             if(i%3 == 0){
@@ -292,7 +289,7 @@ function init_imgs(){
                 var source = "bilder/" + availableArtists[artist] + key + ".jpg";
                 files.push(source);
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"/></div>";
+                    var toAdd = "<div class=\"trackContainer\" ondblclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }
