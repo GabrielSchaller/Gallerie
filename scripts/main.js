@@ -213,12 +213,12 @@ function io_callback(entries, observer){//rework this TODO
                 intersectionObs.unobserve(entry.target);
                 setTimeout(() => {
                     t.style.visibility = "hidden";
-                }, 5000, t=entry.target);
+                }, 30000, t=entry.target);
             }else if(rect.bottom < 20 && (entry.target.parentElement.classList[0] == "columnR" || entry.target.parentElement.classList[0] == "columnRhidden")){
                 intersectionObs.unobserve(entry.target);
                 setTimeout(() => {
                     t.style.visibility = "hidden";
-                }, 5000, t=entry.target);
+                }, 30000, t=entry.target);
             }
         }else{
             const dcopy = entry.target.cloneNode(true);
@@ -246,9 +246,9 @@ function shuffle(array){
 }
 
 function addPicture(source){
-    fetch(source, {method: "HEAD"})
-    .then((res) =>{
-        if(res.status != 404){
+    //fetch(source, {method: "HEAD"})
+    //.then((res) =>{
+    //    if(res.status != 404){
             const img = document.createElement("img");
             img.classList.add("picture");
             img.src = source;
@@ -278,8 +278,8 @@ function addPicture(source){
             secArr.append(secCont);
             intersectionObs.observe(secCont);
             intersectionObs.observe(cont);
-        }
-    });
+        //}
+    //});
 }
 
 function init_imgs(){
