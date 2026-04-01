@@ -9,6 +9,12 @@ window.document.addEventListener("touchmove", function(event) {
     mouseX = event.clientX;
 }, false);
 
+wiggle = function(node){
+    node.getAnimations().forEach((anim) => {
+		anim.play();
+	});
+}
+
 closePrompt = function() {
     var track = document.getElementById("button-track");
     var othertrack = document.getElementById("pausedTrack");
@@ -199,8 +205,6 @@ button.addEventListener("click", function(e){
     removeButton();
 });
 
-var firstChildren = [];
-
 function io_callback(entries, observer){//rework this TODO
     entries.forEach(entry => {
         if(entry.isIntersecting == false){
@@ -293,7 +297,7 @@ function init_imgs(){
                 var source = "bilder/" + availableArtists[artist] + key + ".jpg";
                 files.push(source);
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\" ondblclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
+                    var toAdd = "<div class=\"trackContainer\" onclick=\"wiggle(this)\" ondblclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }

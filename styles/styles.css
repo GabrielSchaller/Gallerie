@@ -97,12 +97,14 @@ button#X:hover{
 	flex-shrink:0;
     justify-content: center;
     align-items: center;
+    animation: wiggle-kf 0.5s forwards paused;
 }
 
 .trackContainer > p {
     font-size: 0px;
     text-shadow: 0px 0px 20px white;
     position: absolute;
+    z-index: 2;
 }
 
 .trackContainer:hover > p {
@@ -141,5 +143,32 @@ button#X:hover{
     top: 10%;
     left: 100vw;
     justify-content: center;
+}
+
+@keyframes wiggle-kf {
+    0% {
+        scale: 1;
+        rotate: 0deg;
+    }
+    20% {
+        scale: 1.05;
+        rotate: -5deg;
+    }
+    40%{
+        scale: 1.1;
+        rotate: 10deg;
+    }
+    60%{
+        scale: 1.1;
+        rotate: -10deg;
+    }
+    80%{
+        scale: 1.05;
+        rotate: 5deg;
+    }
+    100%{
+        scale: 1;
+        rotate: 0deg;
+    }
 }
 
