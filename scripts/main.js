@@ -10,7 +10,7 @@ window.document.addEventListener("touchmove", function(event) {
 }, false);
 
 wiggle = function(node){
-    node.getAnimations().forEach((anim) => {
+    node.children[1].getAnimations().forEach((anim) => {
 		anim.play();
 	});
 }

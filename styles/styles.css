@@ -90,14 +90,11 @@ button#X:hover{
 .trackContainer {
     display: flex;
 	height: 70dvh;
-	overflow: hidden;
 	object-position: 50% center;
 	position: relative;
-	background: rgb(0,0,0);
 	flex-shrink:0;
     justify-content: center;
     align-items: center;
-    animation: wiggle-kf 0.5s forwards paused;
 }
 
 .trackContainer > p {
@@ -115,6 +112,7 @@ button#X:hover{
 	height: 100%;
 	object-fit: contain;
     top: 0;
+    animation: wiggle-kf 0.5s forwards paused;
 }
 
 #button-track{
@@ -151,20 +149,20 @@ button#X:hover{
         rotate: 0deg;
     }
     20% {
-        scale: 1.05;
-        rotate: -5deg;
+        scale: 1.02;
+        rotate: -4deg;
     }
     40%{
-        scale: 1.1;
-        rotate: 10deg;
+        scale: 1.04;
+        rotate: 6deg;
     }
     60%{
-        scale: 1.1;
-        rotate: -10deg;
+        scale: 1.05;
+        rotate: -8deg;
     }
     80%{
-        scale: 1.05;
-        rotate: 5deg;
+        scale: 1.03;
+        rotate: 6deg;
     }
     100%{
         scale: 1;
