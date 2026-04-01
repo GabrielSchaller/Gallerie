@@ -10,9 +10,9 @@
     "Leicht" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
     "Rutsche" : ["Gabriel", "Barbara", "Abelina"],
     "Skelett" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
-    "Fabelwesen" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
+    "Fabelwesen" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina"],
     "Transparent" : ["Gabriel", "Barbara", "Abelina"],
-    "Weich" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
+    "Weich" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina"],
     "Purpose" : ["Gabriel", "Barbara","Raissa", "Abelina"],
     "Gallerie" : ["Barbara", "Raissa"]
     }
