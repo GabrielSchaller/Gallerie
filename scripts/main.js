@@ -1,6 +1,7 @@
 var mouseX;
 var json;
 var newTrack;
+var diffX;
 
 window.document.addEventListener("mousemove", function(event) {
     mouseX = event.clientX;
@@ -38,6 +39,9 @@ closePrompt = function() {
 }
 
 openPrompt = function(caller) {
+    if(diffX >= 150){
+        return;
+    }
     var track = document.getElementById("button-track");
     var artists = json["prompts"][caller];
     track.id = "pausedTrack";
@@ -181,12 +185,25 @@ function addScroller() {
     }
 
         handleOnUp = e => {
+            diffX = Math.abs(document.getElementById("button-track").dataset.sliderstartx - e.clientX);
             const diff = e.clientX-document.getElementById("button-track").dataset.sliderstartx;
             const max = window.innerWidth / 2;
             const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + diff/max*100;
             document.getElementById("button-track").dataset.sliderpercent = parseFloat(percent + document.getElementById("button-track").dataset.sliderpercent);
             document.getElementById("button-track").dataset.sliderstartx = 0;
         }
+
+        const handleOnScroll = e => {
+            const max = window.innerWidth / 2;
+            const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaY/max*100;
+            const pixels = percent/100*window.innerWidth;
+            document.getElementById("button-track").dataset.sliderpercent = parseFloat(percent);
+            document.getElementById("button-track").animate({
+                transform: `translate(${pixels}px)`
+            },{duration:1200, fill:"forwards"});
+        }
+
+        window.onwheel = e => handleOnScroll(e);
         
         window.onmouseup = e => handleOnUp(e);
 
@@ -297,7 +314,7 @@ function init_imgs(){
                 var source = "bilder/" + availableArtists[artist] + key + ".jpg";
                 files.push(source);
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\" onclick=\"wiggle(this)\" ondblclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
+                    var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }
