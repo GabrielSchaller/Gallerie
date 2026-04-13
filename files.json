@@ -14,6 +14,8 @@
     "Transparent" : ["Gabriel", "Barbara", "Abelina"],
     "Weich" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina"],
     "Purpose" : ["Gabriel", "Barbara","Raissa", "Abelina"],
-    "Gallerie" : ["Barbara", "Raissa"]
+    "Gallerie" : ["Barbara", "Raissa", "Abelina"],
+    "Hören" : ["Gabriel", "Barbara", "Abelina"],
+    "Glühen" : ["Gabriel", "Raissa"]
     }
 }

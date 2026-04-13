@@ -195,7 +195,12 @@ function addScroller() {
 
         const handleOnScroll = e => {
             const max = window.innerWidth / 2;
-            const percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaY/max*100;
+            var percent;
+            if(e.deltaX > 100){
+                percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaX/max*100;
+            }else{
+                percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaY/max*100;
+            }
             const pixels = percent/100*window.innerWidth;
             document.getElementById("button-track").dataset.sliderpercent = parseFloat(percent);
             document.getElementById("button-track").animate({
