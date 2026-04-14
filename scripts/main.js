@@ -196,7 +196,7 @@ function addScroller() {
         const handleOnScroll = e => {
             const max = window.innerWidth / 2;
             var percent;
-            if(e.deltaX > 100){
+            if(Math.abs(e.deltaX) > 50){
                 percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaX/max*100;
             }else{
                 percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaY/max*100;
@@ -297,7 +297,7 @@ function addPicture(source){
             }else{
                 var secArr = Array.from(document.getElementsByClassName("columnRhidden"))[1];
             }
-            secArr.append(secCont);
+            secArr.insertAdjacentElement("afterbegin", secCont);
             intersectionObs.observe(secCont);
             intersectionObs.observe(cont);
         //}

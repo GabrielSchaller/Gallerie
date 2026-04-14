@@ -1,21 +1,21 @@
 {"prompts" : {
-    "Irrlicht" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
-    "Drei" : ["Gabriel", "Barbara", "Raissa", "Abelina"], 
-    "Wachs" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
-    "Angeln" : ["Gabriel", "Barbara", "Raissa", "Abelina"], 
-    "Schlamm" : ["Gabriel", "Barbara", "Abelina"],
+    "Irrlicht" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"],
+    "Drei" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"], 
+    "Wachs" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"],
+    "Angeln" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"], 
+    "Schlamm" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
     "Wabe" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
-    "Weiß" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
+    "Weiß" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"],
     "Tragen" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
     "Leicht" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
     "Rutsche" : ["Gabriel", "Barbara", "Abelina"],
-    "Skelett" : ["Gabriel", "Barbara", "Raissa", "Abelina"],
-    "Fabelwesen" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina"],
-    "Transparent" : ["Gabriel", "Barbara", "Abelina"],
+    "Skelett" : ["Gabriel", "Barbara", "Raissa", "Abelina", "Lisa"],
+    "Fabelwesen" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina", "Lisa"],
+    "Transparent" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
     "Weich" : ["Gabriel", "Barbara", "Raissa", "Raissa2", "Abelina"],
     "Purpose" : ["Gabriel", "Barbara","Raissa", "Abelina"],
     "Gallerie" : ["Barbara", "Raissa", "Abelina"],
-    "Hören" : ["Gabriel", "Barbara", "Abelina"],
-    "Glühen" : ["Gabriel", "Raissa"]
+    "Hören" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
+    "Glühen" : ["Gabriel", "Raissa", "Lisa"]
     }
 }
