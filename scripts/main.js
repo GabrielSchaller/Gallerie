@@ -328,6 +328,16 @@ function init_imgs(){
         for(var i=0; i<files.length;i++){
             addPicture(files[i]);
         }
-        //TODO remove lazyloading from the first X pictures in each column
+        const cover = document.getElementById("cover");
+        const columns = document.getElementsByClassName("column");
+        const columnR = document.getElementsByClassName("columnR");
+        for(i=0;i<3;i++){
+            columns[0].children[i].children[0].loading = "eager";
+            columns[1].children[i].children[0].loading = "eager";
+            columnR[0].children[i].children[0].loading = "eager";
+        }
+        setTimeout(() => {
+            cover.style.opacity = 0;
+        }, 500);
     });
 }
