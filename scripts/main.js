@@ -338,6 +338,9 @@ function init_imgs(){
         }
         setTimeout(() => {
             cover.style.opacity = 0;
+            setTimeout(() => {
+                cover.remove();
+            }, 1000);
         }, 500);
     });
 }
