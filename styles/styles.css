@@ -25,6 +25,7 @@ div#imgs {
 
 div.container {
     border:5px solid black;
+    width: 100%;
 }
 
 div.column {
@@ -53,8 +54,9 @@ div.columnRhidden {
 
 img.picture {
     max-height: 100%;
-    max-width: 100%;
+    width: 100%;
     user-select: none;
+    object-fit: fill;
 }
 
 button#enter {

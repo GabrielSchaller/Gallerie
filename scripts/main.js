@@ -227,7 +227,7 @@ button.addEventListener("click", function(e){
     removeButton();
 });
 
-function io_callback(entries, observer){//rework this TODO
+function io_callback(entries, observer){//rework this?
     entries.forEach(entry => {
         if(entry.isIntersecting == false){
             var rect = entry.target.getBoundingClientRect();
@@ -328,5 +328,6 @@ function init_imgs(){
         for(var i=0; i<files.length;i++){
             addPicture(files[i]);
         }
+        //TODO remove lazyloading from the first X pictures in each column
     });
 }
