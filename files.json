@@ -16,6 +16,7 @@
     "Purpose" : ["Gabriel", "Barbara","Raissa", "Abelina"],
     "Gallerie" : ["Barbara", "Raissa", "Abelina"],
     "Hören" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
-    "Glühen" : ["Gabriel", "Raissa", "Lisa"]
+    "Glühen" : ["Gabriel", "Raissa", "Lisa", "Barbara"],
+    "Schatten" : ["Gabriel"]
     }
 }
