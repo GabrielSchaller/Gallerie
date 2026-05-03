@@ -17,6 +17,7 @@
     "Gallerie" : ["Barbara", "Raissa", "Abelina"],
     "Hören" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
     "Glühen" : ["Gabriel", "Raissa", "Lisa", "Barbara", "Abelina"],
-    "Schatten" : ["Gabriel", "Raissa", "Barbara"]
+    "Schatten" : ["Gabriel", "Raissa", "Barbara"],
+    "Holz" : ["Gabriel", "Raissa", "Barbara", "Abelina"]
     }
 }
