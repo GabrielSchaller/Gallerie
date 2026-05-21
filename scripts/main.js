@@ -57,7 +57,12 @@ openPrompt = function(caller) {
     var button = "<button type=\"button\" id=\"X\" onclick=\"closePrompt()\">X</button>";
     newTrack.insertAdjacentHTML("beforeEnd", button);
     artists.forEach(entry => {
-        var source = "bilder/" + entry + caller + ".jpg";
+        var source = "";
+        if(caller == "Tropfen" && entry == "Gabriel"){
+            source = "bilder/" + entry + caller + ".gif";
+        }else{
+            source = "bilder/" + entry + caller + ".jpg";
+        }
         var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
@@ -196,7 +201,7 @@ function addScroller() {
         const handleOnScroll = e => {
             const max = window.innerWidth / 2;
             var percent;
-            if(Math.abs(e.deltaX) > 50){
+            if(Math.abs(e.deltaX) > 5){
                 percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaX/max*100;
             }else{
                 percent = parseFloat(document.getElementById("button-track").dataset.sliderpercent) + e.deltaY/max*100;
@@ -316,8 +321,13 @@ function init_imgs(){
             var availableArtists = prompts[key];
             var rand = Math.floor(Math.random()*availableArtists.length);
             for(var artist = 0; artist < availableArtists.length; artist++){
-                var source = "bilder/" + availableArtists[artist] + key + ".jpg";
-                files.push(source);
+                var source = "";
+                if(key == "Tropfen" && availableArtists[artist] == "Gabriel"){
+                    source = "bilder/" + availableArtists[artist] + key + ".gif";
+                }else{
+                    source = "bilder/" + availableArtists[artist] + key + ".jpg";
+                    files.push(source);
+                }
                 if(rand == artist){
                     var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);

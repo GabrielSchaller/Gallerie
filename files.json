@@ -18,6 +18,8 @@
     "Hören" : ["Gabriel", "Barbara", "Abelina", "Lisa"],
     "Glühen" : ["Gabriel", "Raissa", "Lisa", "Barbara", "Abelina"],
     "Schatten" : ["Gabriel", "Raissa", "Barbara"],
-    "Holz" : ["Gabriel", "Raissa", "Barbara", "Abelina"]
+    "Holz" : ["Gabriel", "Raissa", "Barbara", "Abelina"],
+    "Tropfen" : ["Barbara", "Gabriel"],
+    "Bär" : ["Barbara", "Barbara2", "Raissa", "Gabriel"]
     }
 }
