@@ -58,12 +58,16 @@ openPrompt = function(caller) {
     newTrack.insertAdjacentHTML("beforeEnd", button);
     artists.forEach(entry => {
         var source = "";
+        var mediaElement = "";
         if(caller == "Tropfen" && entry == "Gabriel"){
-            source = "bilder/" + entry + caller + ".gif";
+            source = "bilder/" + entry + caller + ".webm";
+            mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay>";
+
         }else{
             source = "bilder/" + entry + caller + ".jpg";
+            mediaElement = "<img class=\"image\" src=\""+source+"\" draggable=\"false\">";
         }
-        var toAdd = "<div class=\"trackContainer\"> <img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
+        var toAdd = "<div class=\"trackContainer\">" + mediaElement + "</div>";
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
     const width = window.innerWidth/2;
@@ -322,14 +326,17 @@ function init_imgs(){
             var rand = Math.floor(Math.random()*availableArtists.length);
             for(var artist = 0; artist < availableArtists.length; artist++){
                 var source = "";
+                var mediaElement = "";
                 if(key == "Tropfen" && availableArtists[artist] == "Gabriel"){
-                    source = "bilder/" + availableArtists[artist] + key + ".gif";
+                    source = "bilder/" + availableArtists[artist] + key + ".webm";
+                    mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay>"
                 }else{
                     source = "bilder/" + availableArtists[artist] + key + ".jpg";
+                    mediaElement = "<img class=\"image\" src=\""+source+"\" draggable=\"false\">"
                     files.push(source);
                 }
                 if(rand == artist){
-                    var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p><img class=\"image\" src=\""+source+"\" draggable=\"false\"></div>";
+                    var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p>" + mediaElement + "</div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
             }
