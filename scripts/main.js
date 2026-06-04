@@ -64,7 +64,7 @@ openPrompt = function(caller) {
     artists.forEach(entry => {
         var source = "";
         var mediaElement = "";
-        if(caller == "Tropfen" && entry == "Gabriel"){
+        if(caller == "Tropfen" && entry == "Gabriel" || caller == "Knapp" && entry == "Raissa"){
             source = "bilder/" + entry + caller + ".webm";
             mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay>";
 
@@ -351,9 +351,9 @@ function init_imgs(){
             for(var artist = 0; artist < availableArtists.length; artist++){
                 var source = "";
                 var mediaElement = "";
-                if((key == "Tropfen" && availableArtists[artist] == "Gabriel") || (key == "Knapp" && availableArtists[artist] == "Raissa")){
+                if(key == "Knapp" && availableArtists[artist] == "Raissa" || key == "Tropfen" && availableArtists[artist] == "Gabriel"){
                     source = "bilder/" + availableArtists[artist] + key + ".webm";
-                    mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay>"
+                    mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay muted>"
                 }else{
                     source = "bilder/" + availableArtists[artist] + key + ".jpg";
                     mediaElement = "<img class=\"image\" src=\""+source+"\" draggable=\"false\">"
