@@ -2,6 +2,8 @@ var mouseX;
 var json;
 var newTrack;
 var diffX;
+var agentDetails = navigator.userAgent;
+var mobile = false;
 
 window.document.addEventListener("mousemove", function(event) {
     mouseX = event.clientX;
@@ -9,7 +11,9 @@ window.document.addEventListener("mousemove", function(event) {
 window.document.addEventListener("touchmove", function(event) {
     mouseX = event.clientX;
 }, false);
-
+//screen.orientation.addEventListener("change", function(e){
+  //alert("change");  
+//});
 wiggle = function(node){
     node.children[1].getAnimations().forEach((anim) => {
 		anim.play();
@@ -52,6 +56,7 @@ openPrompt = function(caller) {
     newTrack.dataset.sliderpercent = "0";
     newTrack.style.draggable = false;
     newTrack.style.cursor = "auto";
+    
     newTrack.style.transition = "transform 1s ease-in-out";
     shuffle(artists);
     var button = "<button type=\"button\" id=\"X\" onclick=\"closePrompt()\">X</button>";
@@ -70,17 +75,29 @@ openPrompt = function(caller) {
         var toAdd = "<div class=\"trackContainer\">" + mediaElement + "</div>";
         newTrack.insertAdjacentHTML("beforeEnd", toAdd);
     })
-    const width = window.innerWidth/2;
-    const height = window.innerHeight;
+    var width = window.innerWidth/2;
+    var height = window.innerHeight;
     const percent = parseFloat(document.getElementById("pausedTrack").dataset.sliderpercent);
-    const pixels = percent/100*window.innerWidth;
+    var pixels = percent/100*window.innerWidth;
+    if(mobile){
+        height *= 2;
+        width *= 2;
+        newTrack.style.visibility = "hidden";
+    }
     track.animate({
         transform: `translate(${pixels}px, ${height}px)`
     },{duration:600, fill:"forwards"});
     setTimeout(() => {
         track.style.display = "none";
+        if(mobile){
+            newTrack.style.visibility = "visible";
+        }
         newTrack.style.transform = "translateX(-" + String(width) + "px)";
-        newTrack.dataset.sliderpercent = -50;
+        if(mobile){
+            newTrack.dataset.sliderpercent = -100;
+        }else{
+            newTrack.dataset.sliderpercent = -50;
+        }
     }, 500);
 };
 
@@ -112,6 +129,9 @@ function scroll(e){
 };
 
 document.addEventListener("DOMContentLoaded", function() {
+    if(/Android|Mobi|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(agentDetails) ) {
+        mobile = true;
+    }
     init_imgs();
     const scrollers = document.getElementsByClassName("column");
     const scrollersR = document.getElementsByClassName("columnR")
@@ -152,9 +172,13 @@ function removeButton(){
 }
 
 function addScroller() {
+    const track = document.getElementById("button-track")
+    if(mobile){
+        track.style.visibility = "visible";
+    }
     const width = window.innerWidth/2;
-    document.getElementById("button-track").style.transform = "translateX(-" + String(width) + "px)";
-    document.getElementById("button-track").dataset.sliderpercent = -50;
+    track.style.transform = "translateX(-" + String(width) + "px)";
+    track.dataset.sliderpercent = -50;
 
     const handleOnDown = e => {
         document.getElementById("button-track").dataset.sliderstartx = e.clientX;
@@ -327,7 +351,7 @@ function init_imgs(){
             for(var artist = 0; artist < availableArtists.length; artist++){
                 var source = "";
                 var mediaElement = "";
-                if(key == "Tropfen" && availableArtists[artist] == "Gabriel"){
+                if((key == "Tropfen" && availableArtists[artist] == "Gabriel") || (key == "Knapp" && availableArtists[artist] == "Raissa")){
                     source = "bilder/" + availableArtists[artist] + key + ".webm";
                     mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay>"
                 }else{
@@ -352,6 +376,9 @@ function init_imgs(){
             columns[0].children[i].children[0].loading = "eager";
             columns[1].children[i].children[0].loading = "eager";
             columnR[0].children[i].children[0].loading = "eager";
+        }
+        if(mobile){
+            track.style.visibility = "hidden";
         }
         setTimeout(() => {
             cover.style.opacity = 0;

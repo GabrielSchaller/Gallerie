@@ -21,6 +21,7 @@
     "Holz" : ["Gabriel", "Raissa", "Barbara", "Abelina"],
     "Tropfen" : ["Barbara", "Gabriel"],
     "Bär" : ["Barbara", "Barbara2", "Raissa", "Gabriel", "Abelina"],
-    "Locker" : ["Barbara", "Gabriel", "Raissa"]
+    "Locker" : ["Barbara", "Gabriel", "Raissa"],
+    "Knapp" : ["Mauri", "Barbara", "Gabriel", "Raissa"]
     }
 }
