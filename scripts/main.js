@@ -337,9 +337,20 @@ function addPicture(source){
     //});
 }
 
+function gotoEnd(){
+    var track = document.getElementById("button-track");
+    var width = track.getBoundingClientRect().width + window.innerWidth/5
+    track.animate({
+            transform: `translate(-${width}px)`
+        },{duration:1500, fill:"forwards"});
+    track.dataset.sliderpercent = -(width/window.innerWidth)*100;
+}
+
 function init_imgs(){
     var files = [];
     var track = document.getElementById("button-track");
+    var button = "<button type=\"button\" id=\"toEnd\" onclick=\"gotoEnd()\">\></button>";
+    track.insertAdjacentHTML("beforeEnd", button);
     fetch("files.json")
     .then((res) => res.text())
     .then((text) => {
