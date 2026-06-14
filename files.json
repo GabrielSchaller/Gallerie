@@ -21,8 +21,9 @@
     "Holz" : ["Gabriel", "Raissa", "Barbara", "Abelina"],
     "Tropfen" : ["Barbara", "Gabriel"],
     "Bär" : ["Barbara", "Barbara2", "Raissa", "Gabriel", "Abelina"],
-    "Locker" : ["Barbara", "Gabriel", "Raissa"],
-    "Knapp" : ["Mauri", "Barbara", "Gabriel", "Raissa"],
-    "Schlange" : ["Mauri", "Gabriel", "Barbara", "Raissa"]
+    "Locker" : ["Barbara", "Gabriel", "Raissa", "Abelina"],
+    "Knapp" : ["Mauri", "Barbara", "Gabriel", "Raissa", "Abelina"],
+    "Schlange" : ["Mauri", "Gabriel", "Barbara", "Raissa", "Abelina"],
+    "Finden" : ["Mauri", "Gabriel", "Barbara", "Raissa"]
     }
 }
