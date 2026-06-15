@@ -347,6 +347,7 @@ function gotoEnd(){
 }
 
 function init_imgs(){
+    var filter = new URL(window.location.href).searchParams.get("maler");
     var files = [];
     var track = document.getElementById("button-track");
     var button = "<button type=\"button\" id=\"toEnd\" onclick=\"gotoEnd()\">\></button>";
@@ -370,7 +371,7 @@ function init_imgs(){
                     mediaElement = "<img class=\"image\" src=\""+source+"\" draggable=\"false\">"
                     files.push(source);
                 }
-                if(rand == artist){
+                if(filter == availableArtists[artist] || (!filter && rand == artist)){
                     var toAdd = "<div class=\"trackContainer\" onclick=\"openPrompt('" + key + "')\" draggable=\"false\"><p>" + key + "</p>" + mediaElement + "</div>";
                     track.insertAdjacentHTML("beforeEnd", toAdd);
                 }
