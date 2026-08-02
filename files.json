@@ -30,7 +30,7 @@
     "Abend": ["Gabriel", "Gabriel2", "Barbara", "Abelina", "Raissa", "Mauri"],
     "Fließen": ["Raissa", "Raissa2", "Mauri", "Gabriel", "Barbara", "Barbara2", "Abelina"],
     "Feld": ["Raissa", "Abelina", "Barbara", "Mauri", "Gabriel"],
-    "Kitzeln": ["Raissa", "Barbara", Mauri"],
-    "Schmelzen": ["Gabriel", "Mauri", Barbara", "Raissa"]
+    "Kitzeln": ["Raissa", "Barbara", "Mauri"],
+    "Schmelzen": ["Gabriel", "Mauri", "Barbara", "Raissa"]
     }
 }
