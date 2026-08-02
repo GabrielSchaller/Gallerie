@@ -363,7 +363,7 @@ function init_imgs(){
             for(var artist = 0; artist < availableArtists.length; artist++){
                 var source = "";
                 var mediaElement = "";
-                if(key == "Knapp" && availableArtists[artist] == "Raissa" || key == "Tropfen" && availableArtists[artist] == "Gabriel"){
+                if(key == "Knapp" && availableArtists[artist] == "Raissa" || key == "Tropfen" && availableArtists[artist] == "Gabriel" || key == "Schmelzen" && availableArtists[artist] == "Gabriel"){
                     source = "bilder/" + availableArtists[artist] + key + ".webm";
                     mediaElement = "<video class=\"image\" src=\""+source+"\" draggable=\"false\" loop autoplay muted>"
                 }else{
