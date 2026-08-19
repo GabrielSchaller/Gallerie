@@ -32,6 +32,7 @@
     "Feld": ["Raissa", "Abelina", "Barbara", "Mauri", "Gabriel"],
     "Kitzeln": ["Raissa", "Barbara", "Mauri"],
     "Schmelzen": ["Gabriel", "Mauri", "Barbara", "Raissa", "Abelina"],
-    "Ziel": ["Barbara", "Abelina", "Raissa", "Gabriel", "Mauri"]
+    "Ziel": ["Barbara", "Abelina", "Raissa", "Gabriel", "Mauri"],
+    "Freiheit": ["Barbara", "Gabriel", "Raissa"]
     }
 }
