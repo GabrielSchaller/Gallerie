@@ -33,6 +33,8 @@
     "Kitzeln": ["Raissa", "Barbara", "Mauri"],
     "Schmelzen": ["Gabriel", "Mauri", "Barbara", "Raissa", "Abelina"],
     "Ziel": ["Barbara", "Abelina", "Raissa", "Gabriel", "Mauri"],
-    "Freiheit": ["Barbara", "Gabriel", "Raissa"]
+    "Freiheit": ["Barbara", "Gabriel", "Raissa"],
+    "Kriechen": ["Mauri", "Raissa"],
+    "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"]
     }
 }
