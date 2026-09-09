@@ -35,6 +35,7 @@
     "Ziel": ["Barbara", "Abelina", "Raissa", "Gabriel", "Mauri"],
     "Freiheit": ["Barbara", "Gabriel", "Raissa"],
     "Kriechen": ["Mauri", "Raissa"],
-    "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"]
+    "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"],
+    "Schwarm": ["Raissa", "Gabriel", "Barbara"]
     }
 }
