@@ -36,6 +36,7 @@
     "Freiheit": ["Barbara", "Gabriel", "Raissa"],
     "Kriechen": ["Mauri", "Raissa"],
     "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"],
-    "Schwarm": ["Raissa", "Gabriel", "Barbara"]
+    "Schwarm": ["Raissa", "Gabriel", "Barbara"],
+    "Leer": ["Raissa", "Mauri", "Barbara", "Gabriel"]
     }
 }
