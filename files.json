@@ -37,6 +37,8 @@
     "Kriechen": ["Mauri", "Raissa"],
     "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"],
     "Schwarm": ["Raissa", "Gabriel", "Barbara"],
-    "Leer": ["Raissa", "Mauri", "Barbara", "Gabriel"]
+    "Leer": ["Raissa", "Mauri", "Barbara", "Gabriel", "Abelina"],
+    "Weise": ["Barbara", "Abelina", "Gabriel"],
+    "Ultraviolett": ["Gabriel"]
     }
 }
