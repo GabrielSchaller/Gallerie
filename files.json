@@ -36,9 +36,11 @@
     "Freiheit": ["Barbara", "Gabriel", "Raissa"],
     "Kriechen": ["Mauri", "Raissa"],
     "Schild": ["Abelina", "Raissa", "Barbara", "Gabriel"],
-    "Schwarm": ["Raissa", "Gabriel", "Barbara"],
+    "Schwarm": ["Raissa", "Gabriel", "Barbara", "Abelina"],
     "Leer": ["Raissa", "Mauri", "Barbara", "Gabriel", "Abelina"],
     "Weise": ["Barbara", "Abelina", "Gabriel"],
-    "Ultraviolett": ["Gabriel"]
+    "Ultraviolett": ["Gabriel", "Abelina"],
+    "Zauberspruch": ["Raissa", "Abelina", "Mauri", "Barbara"],
+    "Kompass": ["Gabriel", "Barbara"]
     }
 }
